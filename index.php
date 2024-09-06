@@ -1,7 +1,26 @@
 <?php
 
-$array = [1,2,3,4];
-array_push($array,5,6,7);
-$array[] = 8;
-$array[4] = 123123;
-var_dump($array);
+class Box {
+    public $height;
+    public $width;
+    public $length;
+
+    public function volume(){
+        return $this->height * $this->width * $this->length;
+    } 
+}
+
+class MetalBox extends Box {
+    use HasMaterial;
+    public $weightPerUnit = 10;
+    public function weight(){
+        return $this->volume() * $this->weightPerUnit;
+    }
+}
+
+trait HasMaterial {
+    public $material;
+    public function getMaterial() {
+        return $this->material;
+    }
+}
