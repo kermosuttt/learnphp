@@ -1,14 +1,36 @@
 <?php
 
-$array = [1,2,3,4];
-array_push($array,5,6,7);
-$array[] = 8;
-$array[4] = 123123;
-var_dump($array);
+class Box {
+    public $height;
+    protected $width;
+    private $length;
 
-function hello($name=''){
-    echo "hello $name\n";    
+    public function volume(){
+        return $this->height * $this->width * $this->length;
+    } 
+    public function getLength(){
+        return $this->length;
+    }
+    public function setLength($length){
+        if(is_numeric($length) && $length > 0){
+            $this->length = $length;
+        } else {
+            $this->length = 0;
+        }
+    }
 }
 
-hello('kermo');
-hello();
+class MetalBox extends Box {
+    public $weightPerUnit = 10;
+    public function weight(){
+        return $this->volume() * $this->weightPerUnit;
+    }
+    public function testProtected(){
+        var_dump($this->width);
+    }
+}
+
+$box = new MetalBox();
+$box->setLength(121);
+$box->testProtected();
+var_dump($box);
