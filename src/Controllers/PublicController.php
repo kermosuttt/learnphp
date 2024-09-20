@@ -2,18 +2,32 @@
 
 namespace App\Controllers;
 
-class PublicController {
-    public function index() {
-        $posts = [
-            ['title' => 'Some title 1', 'body' => 'Some body 1'],
-            ['title' => 'Some title 2', 'body' => 'Some body 2'],
-            ['title' => 'Some title 3', 'body' => 'Some body 3'],
-            ['title' => 'Some title 4', 'body' => 'Some body 4'],
-        ];
-        include 'views/index.php';
+use App\DB;
+use App\Models\Post;
+use App\Models\User;
+
+class PublicController
+{
+    public function index()
+    {
+        
+        $posts = Post::all();
+        dump($posts);
+        $users = User::all();
+        dump($users);
+        $post = Post::find(2);
+        dump($post);
+        // $posts = [
+        //     ['title' => 'Some title 1', 'body' => 'Some body 1'],
+        //     ['title' => 'Some title 2', 'body' => 'Some body 2'],
+        //     ['title' => 'Some title 3', 'body' => 'Some body 3'],
+        //     ['title' => 'Some title 4', 'body' => 'Some body 4'],
+        // ];
+        // include 'views/index.php';
     }
 
-    public function us(){
+    public function us()
+    {
         $posts = [
             ['title' => 'Some US title 1', 'body' => 'Some US body 1'],
             ['title' => 'Some US title 2', 'body' => 'Some US body 2'],
@@ -23,7 +37,8 @@ class PublicController {
         include 'views/us.php';
     }
 
-    public function tech() {
+    public function tech()
+    {
         $posts = [
             ['title' => 'Some Tech title 1', 'body' => 'Some Tech body 1'],
             ['title' => 'Some Tech title 2', 'body' => 'Some Tech body 2'],
@@ -33,7 +48,8 @@ class PublicController {
         include 'views/tech.php';
     }
 
-    public function form() {
+    public function form()
+    {
         //dump($_GET, $_POST); //query
 
         // if(isset($_GET['fname'])){
@@ -48,7 +64,8 @@ class PublicController {
         include 'views/form.php';
     }
 
-    public function answer(){
+    public function answer()
+    {
         echo $_POST['fname'];
     }
 }
