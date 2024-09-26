@@ -9,4 +9,7 @@ class Post extends Model {
     public $title;
     public $body;
 
+    public function snippet(){
+        return substr($this->body, 0, 3);
+    }
 }
