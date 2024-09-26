@@ -8,11 +8,11 @@ class PostsController
 {
     public function index(){
         $posts = Post::all();
-        include 'views/posts/index.php';
+        view('posts/index', compact('posts'));
     }
 
     public function create(){
-        include 'views/posts/create.php';
+        view('posts/create');
     }
 
     public function store(){
@@ -20,7 +20,7 @@ class PostsController
         $post->title = $_POST['title'];
         $post->body = $_POST['body'];
         $post->save();
-        header('Location: /admin/posts');
+        redirect('/admin/posts');
     }
 
     public function destroy(){
@@ -28,6 +28,6 @@ class PostsController
         if($post){
             $post->delete();
         }
-        header('Location: /admin/posts');
+        redirect('/admin/posts');
     }
 }

@@ -12,19 +12,21 @@ class PublicController
     {
         
         $posts = Post::all();
-        include 'views/index.php';
+        view('index', compact('posts'));
+        //view('index', ['posts' => $posts]);
     }
 
     public function us()
     {
         $posts = Post::all();
-        include 'views/us.php';
+        view('us', compact('posts'));
     }
 
     public function tech()
     {
         $posts = Post::all();
-        include 'views/tech.php';
+        view('tech', compact('posts'));
+       
     }
 
     public function form()
@@ -40,7 +42,7 @@ class PublicController
         //$fname = isset($_GET['fname']) ? $_GET['fname'] : null;
 
         $fname = $_POST['fname'] ?? null;
-        include 'views/form.php';
+        view('form', compact('fname'));
     }
 
     public function answer()
