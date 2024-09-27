@@ -39,7 +39,7 @@ class DB
 
     public function where($table, $class, $field, $value)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM $table WHERE $field=$value");
+        $stmt = $this->conn->prepare("SELECT * FROM $table WHERE $field='$value'");
         $stmt->execute();
         // set the resulting array to associative
         $stmt->setFetchMode(PDO::FETCH_CLASS, $class);

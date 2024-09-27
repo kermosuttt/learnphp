@@ -19,6 +19,7 @@ class PublicController
     public function us()
     {
         $posts = Post::all();
+        dd($posts);
         view('us', compact('posts'));
     }
 

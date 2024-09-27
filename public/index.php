@@ -4,10 +4,7 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif|svg|js|css)$/', $_SERVER["REQUEST_URI"]))
     return false;    // serve the requested resource as-is.
 }
 
-spl_autoload_register(function($class){
-    $class = substr($class, 4);
-    require_once __DIR__ . "/../src/$class.php";
-});
+require __DIR__ . '/../vendor/autoload.php';
 
 session_start();
 
@@ -28,4 +25,10 @@ if($match){
     
 } else {
     echo 'ERROR 404';
+}
+
+unset($_SESSION['error']);
+if(isset($_SESSION['newerror'])){
+    $_SESSION['error'] = $_SESSION['newerror'];
+    unset($_SESSION['newerror']);
 }
